@@ -5,6 +5,7 @@ import {legacy_createStore as createStore} from 'redux';
 import { productReducer } from './reducers/productReducer';
 
 const reducer = combineReducers({
+products:productReducer
 });
 let initialStore = {};
 const middleWare = [thunk];

@@ -18,7 +18,7 @@
     "react-items": "^0.1.0",
     "react-rating-stars-component": "^2.2.0",
     "react-redux": "^8.0.5",
-    "react-router-dom": "^5.3.4",
+    "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
@@ -48,6 +48,8 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
+    ],
+    "proxy": "http://172.18.192.1:4000"
   }
+
 }

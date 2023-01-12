@@ -8,6 +8,7 @@ process.on("uncaughtException",(err)=>{
     process.exit(1);
 })
 // Eg. console.log(youtube);
+// cros = for add frontend and backend
 
 //config
 dotenv.config({path:"backend/config/config.env"});

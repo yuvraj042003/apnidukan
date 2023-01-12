@@ -2,7 +2,7 @@ import React from 'react'
 import playStore from "../Images/playstore.png"
 import  Appstore from "../Images/Appstore.png"
 import { Link } from 'react-router-dom'
-//import  footer from "../Footer/Footer.css"
+import  footer from "../Footer/Footer.css"
 const Footer = () => {
   return (
     <footer id='footer'>

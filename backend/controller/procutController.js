@@ -13,7 +13,7 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
 });
 // Get All Products
 exports.getAllProducts = catchAsyncError(async (req, res) => {
-  const resultParPage = 5;
+  const resultParPage = 8;
   const productCount = await Product.countDocuments();
   const apiFeatures = new ApiFeatures(Product.find(), req.query)
     .search()
@@ -35,6 +35,7 @@ exports.getProductDetail = catchAsyncError(async (req, res, next) => {
   return res.status(200).json({
     sucess: true,
     product,
+    productCount
   });
 });
 // Update Product Ditels --Admin
