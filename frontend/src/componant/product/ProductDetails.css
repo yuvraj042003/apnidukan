@@ -1,0 +1,8 @@
+.ProductDetils{
+    background-color: rgb(228, 205, 205);
+    width: 100vw;
+    max-width: 100%;
+    padding: 6vmax;
+    box-sizing: border-box;
+    display: flex;
+}

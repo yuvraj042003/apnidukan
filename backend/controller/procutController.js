@@ -2,6 +2,7 @@ const Product = require("../models/Productmodel");
 const ErrorHandler = require("../utils/errorhandlers");
 const catchAsyncError = require("../middleware/catchAsyncError");
 const ApiFeatures = require("../utils/apifeatures");
+const { response } = require("../app");
 // Create a Product --admin
 exports.createProduct = catchAsyncError(async (req, res, next) => {
   req.body.user = req.user.id;
@@ -13,6 +14,9 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
 });
 // Get All Products
 exports.getAllProducts = catchAsyncError(async (req, res, next) => {
+  res.status(500).json({
+    error:"This error is not shown",
+  })
   const resultParPage = 8;
   const productsCount = await Product.countDocuments();
   const apiFeatures = new ApiFeatures(Product.find(), req.query)
@@ -29,6 +33,7 @@ exports.getAllProducts = catchAsyncError(async (req, res, next) => {
 
 // Get Product Ditels
 exports.getProductDetail = catchAsyncError(async (req, res, next) => {
+  
   const product = await Product.findById(req.params.id);
   if (!product) {
     return next(new ErrorHandler("Product Not Found", 404));
@@ -41,6 +46,7 @@ exports.getProductDetail = catchAsyncError(async (req, res, next) => {
 });
 // Update Product Ditels --Admin
 exports.updateProducts = catchAsyncError(async (req, res, next) => {
+  
   let product = await Product.findById(req.params.id);
   if (!product) {
     return res.status(500).json({
