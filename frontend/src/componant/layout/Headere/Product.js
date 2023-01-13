@@ -14,11 +14,11 @@ const Product = ({product}) => {
 }
   return (
     <>
-    <Link className='ProductCard' to={product._id}>
+    <Link className='ProductCard' to={`/product/${product._id}`}>
     <img src={product.images[0].url} alt={product.name}/>
     <p>{product.name}</p>
     <div>
-        <ReactStar {...options}/><span>({product.noOfReviews} Revie)</span>
+        <ReactStar {...options}/><span>({product.noOfReviews} Reviews)</span>
     </div>
     <span>{product.price}</span>
     </Link>

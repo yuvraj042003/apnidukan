@@ -6,18 +6,22 @@ import MetaData from './metadata';
 import {getProduct} from '../../action/productAction';
 import {useDispatch, useSelector} from 'react-redux';
  import Loader from './Loader/Loader';
-// import { useAlert } from 'react-alert';
+ import { useAlert } from 'react-alert';
  
 
 
 const Home = () => {
+  const alert = useAlert();
   const dispatch = useDispatch();
   const {loading, error, products, productCount} = useSelector(
     (state) =>state.products
   ); 
   useEffect(() => {
+    if(error){
+      return alert.error(error)
+    }
     dispatch(getProduct());
-  }, [dispatch ])
+  }, [dispatch, error, alert ])
   
   return (
     <>
@@ -27,7 +31,7 @@ const Home = () => {
       <div className="banner">
       <h1>Welcome to Apni dukan</h1>
       <p>Find Amazing product below</p>
-      <Link className='scrol' to="container"><button className='btn'><b>Scroll</b></button></Link>
+      <Link className='scrol' to="container"><button className='btn'><b>Scroll </b></button></Link>
       
       </div>
       <h2 className='homeHeading'>Featured Products</h2>
