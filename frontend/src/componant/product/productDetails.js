@@ -3,11 +3,13 @@ import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getProductDetails } from "../../action/productAction";
+import { clearErrors, getProductDetails } from "../../action/productAction";
 
 import ReactStars from "react-rating-stars-component";
 import { useParams } from "react-router-dom";
-
+import { useAlert } from 'react-alert';
+import ReviewCard from './ReviewCard.js';
+import Loader from "../layout/Loader/Loader";
 
 const productDetails = () => {
   const params = useParams();
@@ -15,21 +17,30 @@ const productDetails = () => {
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
-  console.log(params.id);
   useEffect(() => {
+    const alert = useAlert();
+    if(error){
+      alert.error(error);
+      dispatch(clearErrors());
+    }
     dispatch(getProductDetails(params.id));
-  }, [dispatch,params.id]);
+  }, [dispatch,params.id, error, alert]);
 
   const options = {
     edit:true,
     color:"rgba(20,20,20, 0.1)",
     activeColor:"tomato",
     size:window.innerWidth < 500 ? 15:20,
-    value:2.8,
+    value:product.ratings,
     isHalf:true
   }
   return (
     <>
+    (
+      loading ? <Loader/>:
+    ):(
+    {/* (product ? 
+    
       <div className="ProductDetils">
         <div>
           <Carousel>
@@ -37,7 +48,7 @@ const productDetails = () => {
               product.images.map((item, i) => (
                 <img
                   className="CarouselImag"
-                  key={item.url}
+                  key={i}
                   src={item.url}
                   alt={`${i} Slide`}
                 />
@@ -82,8 +93,20 @@ const productDetails = () => {
         
       </div>
     </div>
+    : "product factching") */}
+    <h3 className="reviewsHandling">Reviews</h3>
+    {product.reviews && product.reviews[0] ?
+    (
+      <div className="reviews">
+      {
+        product.reviews && product.reviews.map((review) => <ReviewCard review={review}/>)
+      }
+      </div>
+    ):(
+      <p className="noReviews">No Reviews Yet</p>
+    )})
     </>
-  );
+  );                                                                                    
 };
 
 

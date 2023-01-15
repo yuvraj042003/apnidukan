@@ -13,10 +13,8 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
   });
 });
 // Get All Products
-exports.getAllProducts = catchAsyncError(async (req, res, next) => {
-  res.status(500).json({
-    error:"This error is not shown",
-  })
+exports.getAllProducts = catchAsyncError(async (req, res) => {
+  
   const resultParPage = 8;
   const productsCount = await Product.countDocuments();
   const apiFeatures = new ApiFeatures(Product.find(), req.query)

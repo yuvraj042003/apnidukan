@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import "../layout/Headere/Home.css";
-import Product from "../layout/Headere/Product.js";
+import Product from "./Headere/ProductCard.js";
 import MetaData from './metadata';
 import {getProduct} from '../../action/productAction';
 import {useDispatch, useSelector} from 'react-redux';
@@ -17,7 +17,7 @@ const Home = () => {
     (state) =>state.products
   ); 
   useEffect(() => {
-    console.log( "Error --->" , error);
+    
     if(error){
       return alert.error(error)
     }
