@@ -39,8 +39,7 @@ const productDetails = () => {
     (
       loading ? <Loader/>:
     ):(
-    {/* (product ? 
-    
+    (product ? 
       <div className="ProductDetils">
         <div>
           <Carousel>
@@ -93,7 +92,7 @@ const productDetails = () => {
         
       </div>
     </div>
-    : "product factching") */}
+    : "product factching")
     <h3 className="reviewsHandling">Reviews</h3>
     {product.reviews && product.reviews[0] ?
     (
