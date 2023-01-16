@@ -11,14 +11,15 @@ import { useAlert } from 'react-alert';
 import ReviewCard from './ReviewCard.js';
 import Loader from "../layout/Loader/Loader";
 
-const productDetails = () => {
+const ProductDetails = () => {
   const params = useParams();
   const dispatch = useDispatch();
+  const alert = useAlert();
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
+  console.log("product ---> ", product);
   useEffect(() => {
-    const alert = useAlert();
     if(error){
       alert.error(error);
       dispatch(clearErrors());
@@ -109,4 +110,4 @@ const productDetails = () => {
 };
 
 
-export default productDetails;
+export default ProductDetails;
