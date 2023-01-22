@@ -12,11 +12,12 @@ PRODUCT_DETAILS_SUCCESS,
 CLEAR_ERRORS
 } from '../constant/productConstants';
 
-export const getProduct = ()=> async(dispatch)=>{
+export const getProduct = (keyword="")=> async(dispatch)=>{
     try {
        dispatch({type:ALL_PRODUCT_REQUEST});
-        const {data} = await axios.get("http://localhost:4000/api/v1/products");
-        console.log("data ---> ", data);
+       let link = `http://localhost:4000/api/v1/products?keyword=${keyword}`
+        const {data} = await axios.get(link);
+        
         dispatch({
             type:ALL_PRODUCT_SUCCESS,
             payload:data,

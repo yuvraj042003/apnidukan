@@ -5,14 +5,17 @@ import Loader from "../layout/Loader/Loader";
 import { clearErrors, getProduct } from "../../action/productAction";
 import ProductCard from "../layout/Headere/ProductCard";
 
-const Products = () => {
+const Products = ({match}) => {
   const dispatch = useDispatch();
   const { products, loading, error, productsCount } = useSelector(
     (state) => state.products
   );
+
+  const keyword = match.params.keyword
+
   useEffect(() => {
-    dispatch(getProduct());
-  }, [dispatch]);
+    dispatch(getProduct(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <>

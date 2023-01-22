@@ -29,6 +29,7 @@ function App() {
             <Route extact path="/" element={ <Home/> } />
             <Route extact path="/product/:id" element={ <ProductDetails/> } />
             <Route extact path="/products" element={ <Products/> } />
+            <Route path="/products/:keyword" element={ <Products/> } />
             <Route extact path="/search" element={ <Search/> } />
            
             {/* <Route extact path="/product/:id" element={<ProductDetails/> } /> */}
