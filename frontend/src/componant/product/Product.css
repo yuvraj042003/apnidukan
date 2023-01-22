@@ -14,3 +14,23 @@
     padding: 0 0.5vmax;
     justify-content: center;
 }
+
+.paginationBox{
+    display:flex;
+    justify-content: center;
+    margin: 8vmax;
+}
+.pagination{
+    display:flex;
+    justify-content: center;
+    padding:0;
+}
+.page-item{
+    background-color: white;
+    list-style: none;
+    border:1px solid  black;
+    padding:1vmax,1.5vmax;
+    transition: all 0.3s;
+    cursor: pointer;
+
+}
