@@ -9,6 +9,7 @@ import { BrowserRouter,
 import Home from "./componant/layout/Home.js"
 import ProductDetails from "./componant/product/productDetails.js";
 import Products from './componant/product/Products.js'
+import Search from './componant/product/Search.js'
 
 // import ProductDetails from './componant/product/ProductDetails.js';
 
@@ -28,6 +29,7 @@ function App() {
             <Route extact path="/" element={ <Home/> } />
             <Route extact path="/product/:id" element={ <ProductDetails/> } />
             <Route extact path="/products" element={ <Products/> } />
+            <Route extact path="/search" element={ <Search/> } />
            
             {/* <Route extact path="/product/:id" element={<ProductDetails/> } /> */}
         </Routes>
