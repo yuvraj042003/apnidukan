@@ -8,6 +8,8 @@ import { BrowserRouter,
 //import React, { useEffect } from "react";
 import Home from "./componant/layout/Home.js"
 import ProductDetails from "./componant/product/productDetails.js";
+import Products from './componant/product/Products.js'
+
 // import ProductDetails from './componant/product/ProductDetails.js';
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
         <Routes>
             <Route extact path="/" element={ <Home/> } />
             <Route extact path="/product/:id" element={ <ProductDetails/> } />
+            <Route extact path="/products" element={ <Products/> } />
            
             {/* <Route extact path="/product/:id" element={<ProductDetails/> } /> */}
         </Routes>

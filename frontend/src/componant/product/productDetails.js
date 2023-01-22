@@ -18,7 +18,7 @@ const ProductDetails = () => {
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
-  console.log("product ---> ", product);
+  
   useEffect(() => {
     if(error){
       alert.error(error);

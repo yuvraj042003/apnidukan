@@ -14,7 +14,6 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
 });
 // Get All Products
 exports.getAllProducts = catchAsyncError(async (req, res) => {
-  
   const resultParPage = 8;
   const productsCount = await Product.countDocuments();
   const apiFeatures = new ApiFeatures(Product.find(), req.query)
@@ -25,13 +24,12 @@ exports.getAllProducts = catchAsyncError(async (req, res) => {
   res.status(200).json({
     sucess: true,
     products,
-    productsCount
+    productsCount,
   });
 });
 
 // Get Product Ditels
 exports.getProductDetail = catchAsyncError(async (req, res, next) => {
-  
   const product = await Product.findById(req.params.id);
   if (!product) {
     return next(new ErrorHandler("Product Not Found", 404));
@@ -39,12 +37,10 @@ exports.getProductDetail = catchAsyncError(async (req, res, next) => {
   return res.status(200).json({
     sucess: true,
     product,
-    
   });
 });
 // Update Product Ditels --Admin
 exports.updateProducts = catchAsyncError(async (req, res, next) => {
-  
   let product = await Product.findById(req.params.id);
   if (!product) {
     return res.status(500).json({
@@ -166,7 +162,7 @@ exports.deleteReview = catchAsyncError(async (req, res, next) => {
 
   let ratings = avg / reviews.length;
 
-    const noOfReviews = reviews.length;
+  const noOfReviews = reviews.length;
 
   await Product.findByIdAndUpdate(
     req.query.productId,
