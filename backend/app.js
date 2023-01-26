@@ -3,8 +3,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require('cors');
 
-
-// for cors policy
+//for cors policy
 app.use(cors({
     origin: 'http://localhost:3000',
     methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
