@@ -15,7 +15,12 @@ const Products = () => {
   
   const [currentPage, setCurrentPage] = useState(1);
   const [amount, setAmount] = useState([0,25000]);
-  const { products, loading, error, productsCount, resultParPage } = useSelector(
+  const { products,
+          loading,
+          error,
+          productsCount,
+          resultParPage,
+          filteredProductsCount } = useSelector(
     (state) => state.products
   );
   const setCurrentPageNo = (e) => {
@@ -30,7 +35,8 @@ const Products = () => {
   useEffect(() => {
     dispatch(getProduct(keyword, currentPage, amount));
   }, [dispatch, keyword, currentPage, amount]);
-
+    
+  let count = filteredProductsCount;
   return (
     <>
       <div>{loading ? <Loader /> : <>
@@ -58,7 +64,7 @@ const Products = () => {
           </div>
 
           {
-            resultParPage < productsCount && (<div className="paginatonBox">
+            resultParPage < count && (<div className="paginatonBox">
               <Pagination activePage={currentPage}
                 itemsCountPerPage={resultParPage}
                 totalItemsCount={productsCount}
