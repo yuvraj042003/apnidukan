@@ -8,10 +8,10 @@ import Pagination from "react-js-pagination";
 import { useState } from "react";
 import {useParams} from 'react-router-dom'
 
-const Products = ({match}) => {
+const Products = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const { products, loading, error, productsCount, resultPerPage } = useSelector(
+  const { products, loading, error, productsCount, resultParPage } = useSelector(
     (state) => state.products
   );
   const setCurrentPageNo = (e) =>{
@@ -21,8 +21,8 @@ const Products = ({match}) => {
   const keyword = params.keyword
 
   useEffect(() => {
-    dispatch(getProduct(keyword));
-  }, [dispatch, keyword]);
+    dispatch(getProduct(keyword, currentPage));
+  }, [dispatch, keyword, currentPage]);
 
   return (
     <>
@@ -35,23 +35,24 @@ const Products = ({match}) => {
             <ProductCard key={product._id} product={product} />   
           ))
         }
-        <div className="paginatonBox">
+        {
+          resultParPage<productsCount &&(<div className="paginatonBox">
         <Pagination activePage={currentPage}
-                    itemsCountPerPage={resultPerPage}
-                    totalItemsCount={productsCount}
-                    onChange={setCurrentPageNo}
-                    nextPageText="Next"
-                    prevPageText="Prev"
-                    firstPageText="1st"
-                    lastPageText="Last"
-                    itemClass="page-item"
-                    linkClass="page-link"
-                    activeClass="pageItemActive"
-                    activeLinkClass="pageLinkActive"
-                  />
-                
-        </div>
-
+                itemsCountPerPage={resultParPage}
+                totalItemsCount={productsCount}
+                onChange={setCurrentPageNo}
+                nextPageText="Next"
+                prevPageText="Prev"
+                firstPageText="1st"
+                lastPageText="Last"
+                itemClass="page-item"
+                linkClass="page-link"
+                activeClass="pageItemActive"
+                activeLinkClass="pageLinkActive"
+                />
+              </div>
+            )
+        }
         </div>
       </>}</div>
     </>

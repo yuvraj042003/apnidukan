@@ -12,10 +12,10 @@ PRODUCT_DETAILS_SUCCESS,
 CLEAR_ERRORS
 } from '../constant/productConstants';
 
-export const getProduct = (keyword="")=> async(dispatch)=>{
+export const getProduct = (keyword="", currentPage=1)=> async(dispatch)=>{
     try {
        dispatch({type:ALL_PRODUCT_REQUEST});
-       let link = `http://localhost:4000/api/v1/products?keyword=${keyword}`
+       let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}`
         const {data} = await axios.get(link);
         
         dispatch({
