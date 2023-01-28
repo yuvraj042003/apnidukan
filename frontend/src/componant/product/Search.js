@@ -1,6 +1,7 @@
 
 import React, {useState} from 'react'
 import './Search.css';
+import MetaData from '../layout/metadata'
 const Search = ({history}) => {
     const [keyword, setKeyword] = useState("")
     const searchSubmitHandler = (e) =>{
@@ -14,6 +15,7 @@ const Search = ({history}) => {
     }
     return (
     <>
+        <MetaData title="Search Item"/>
         <form className='searchBox' onSubmit={searchSubmitHandler}>
         <input type="text"
                placeholder="Search a Product....."

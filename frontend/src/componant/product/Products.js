@@ -9,6 +9,8 @@ import { useState } from "react";
 import { useParams } from 'react-router-dom'
 import Slider from '@material-ui/core/slider';
 import { Typography } from "@material-ui/core";
+import {useAlert} from "react-alert";
+import MetaData from "../layout/metadata";
 
 
 const categories = [
@@ -29,6 +31,7 @@ const categories = [
 
 const Products = () => {
   const dispatch = useDispatch();
+  const alert = useAlert();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [amount, setAmount] = useState([0, 25000]);
@@ -40,7 +43,7 @@ const Products = () => {
     error,
     productsCount,
     resultParPage,
-    filteredProductsCount } = useSelector(
+    } = useSelector(
       (state) => state.products
     );
   const setCurrentPageNo = (e) => {
@@ -53,13 +56,18 @@ const Products = () => {
   const keyword = params.keyword
 
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage, amount, category,ratings));
-  }, [dispatch, keyword, currentPage, amount, category,ratings]);
+    if(error){
+      alert.error(error)
+      dispatch(clearErrors());
+    }
 
-  let count = filteredProductsCount;
+    dispatch(getProduct(keyword, currentPage, amount, category,ratings));
+  }, [dispatch, keyword, currentPage, amount, category,ratings,alert, error]);
+  
   return (
     <>
       <div>{loading ? <Loader /> : <>
+        <MetaData title="Products" />
         <h2 className="productsHeading">Products</h2>
         <div className="products">
           {

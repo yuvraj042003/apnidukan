@@ -1,6 +1,4 @@
-import { Action } from '@remix-run/router';
 import axios from 'axios';
-import { useActionData } from 'react-router-dom';
 
 import {
 ALL_PRODUCT_FAIL,
