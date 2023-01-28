@@ -8,7 +8,7 @@ import Pagination from "react-js-pagination";
 import { useState } from "react";
 import { useParams } from 'react-router-dom'
 import Slider from '@material-ui/core/slider';
-import {Typography}  from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 
 const categories = [
@@ -24,24 +24,25 @@ const categories = [
   "Woman Shirt ",
   "Fashin & Beauty"
 ]
-  
+
 
 
 const Products = () => {
   const dispatch = useDispatch();
-  
+
   const [currentPage, setCurrentPage] = useState(1);
-  const [amount, setAmount] = useState([0,25000]);
-  const [category ,setCategory] = useState("")
+  const [amount, setAmount] = useState([0, 25000]);
+  const [category, setCategory] = useState("")
+  const [ratings, setRatings] = useState(0)
 
   const { products,
-          loading,
-          error,
-          productsCount,
-          resultParPage,
-          filteredProductsCount } = useSelector(
-    (state) => state.products
-  );
+    loading,
+    error,
+    productsCount,
+    resultParPage,
+    filteredProductsCount } = useSelector(
+      (state) => state.products
+    );
   const setCurrentPageNo = (e) => {
     setCurrentPage(e)
   }
@@ -52,9 +53,9 @@ const Products = () => {
   const keyword = params.keyword
 
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage, amount, category));
-  }, [dispatch, keyword, currentPage, amount, category]);
-    
+    dispatch(getProduct(keyword, currentPage, amount, category,ratings));
+  }, [dispatch, keyword, currentPage, amount, category,ratings]);
+
   let count = filteredProductsCount;
   return (
     <>
@@ -68,42 +69,55 @@ const Products = () => {
             ))
           }
           <div className="filterBox">
-            <Typography>Price</Typography>
-            <Slider 
-            value={amount}
-            onChange={priceHandler}
-            valueLabelDisplay="auto"
-            aria-labelledby="range-slider"
-            min={0}
-            max={25000}
+            <Typography><b>Price</b></Typography>
+            <Slider
+              value={amount}
+              onChange={priceHandler}
+              valueLabelDisplay="auto"
+              aria-labelledby="range-slider"
+              min={0}
+              max={25000}
             />
-          <Typography>Categories</Typography>
-              <ul className="categoryBox">
-                {categories.map((category) =>(
-                  <li className="category-link"
-                   key={category}
-                   onClick={()=> setCategory(category)}>
-                   {category} 
-                  </li>
-                ))}
-              </ul>
-            </div>
-          
-            <div className="paginatonBox">
-              <Pagination activePage={currentPage}
-                itemsCountPerPage={resultParPage}
-                totalItemsCount={productsCount}
-                onChange={setCurrentPageNo}
-                nextPageText="Next"
-                prevPageText="Prev"
-                firstPageText="1st"
-                lastPageText="Last"
-                itemClass="page-item"
-                linkClass="page-link"
-                activeClass="pageItemActive"
-                activeLinkClass="pageLinkActive"
+            <Typography><b>Categories</b></Typography>
+            <ul className="categoryBox">
+              {categories.map((category) => (
+                <li className="category-link"
+                  key={category}
+                  onClick={() => setCategory(category)}>
+                  {category}
+                </li>
+              ))}
+            </ul>
+
+            <fieldset>
+              <Typography component="legend">Ratings Above</Typography>
+              <Slider value={ratings}
+                onChange={(e, newRatings) => {
+                  setRatings(newRatings);
+                }}
+                aria-labelledby="continuous-slider"
+                valueLabelDisplay="auto"
+                min={0}
+                max={5}
               />
-            </div> 
+            </fieldset>
+          </div>
+
+          <div className="paginatonBox">
+            <Pagination activePage={currentPage}
+              itemsCountPerPage={resultParPage}
+              totalItemsCount={productsCount}
+              onChange={setCurrentPageNo}
+              nextPageText="Next"
+              prevPageText="Prev"
+              firstPageText="1st"
+              lastPageText="Last"
+              itemClass="page-item"
+              linkClass="page-link"
+              activeClass="pageItemActive"
+              activeLinkClass="pageLinkActive"
+            />
+          </div>
         </div>
       </>}</div>
     </>
