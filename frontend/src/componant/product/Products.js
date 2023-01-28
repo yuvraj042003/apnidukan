@@ -68,7 +68,7 @@ const Products = () => {
               <ProductCard key={product._id} product={product} />
             ))
           }
-          <div className="filterBox">
+           <div className="filterBox">
             <Typography><b>Price</b></Typography>
             <Slider
               value={amount}
@@ -102,6 +102,7 @@ const Products = () => {
               />
             </fieldset>
           </div>
+          
 
           <div className="paginatonBox">
             <Pagination activePage={currentPage}
