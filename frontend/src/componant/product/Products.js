@@ -10,11 +10,30 @@ import { useParams } from 'react-router-dom'
 import Slider from '@material-ui/core/slider';
 import {Typography}  from "@material-ui/core";
 
+
+const categories = [
+  "Laptop",
+  "Watches",
+  "Camras",
+  "Air Conditionar",
+  "Accesrise",
+  "Mobile",
+  "Fashion & Style",
+  "Men Shirt",
+  "Men Jeans",
+  "Woman Shirt ",
+  "Fashin & Beauty"
+]
+  
+
+
 const Products = () => {
   const dispatch = useDispatch();
   
   const [currentPage, setCurrentPage] = useState(1);
   const [amount, setAmount] = useState([0,25000]);
+  const [category ,setCategory] = useState("")
+
   const { products,
           loading,
           error,
@@ -33,8 +52,8 @@ const Products = () => {
   const keyword = params.keyword
 
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage, amount));
-  }, [dispatch, keyword, currentPage, amount]);
+    dispatch(getProduct(keyword, currentPage, amount, category));
+  }, [dispatch, keyword, currentPage, amount, category]);
     
   let count = filteredProductsCount;
   return (
@@ -48,7 +67,6 @@ const Products = () => {
               <ProductCard key={product._id} product={product} />
             ))
           }
-
           <div className="filterBox">
             <Typography>Price</Typography>
             <Slider 
@@ -58,13 +76,20 @@ const Products = () => {
             aria-labelledby="range-slider"
             min={0}
             max={25000}
-
-
-             />
-          </div>
-
-          {
-            resultParPage < count && (<div className="paginatonBox">
+            />
+          <Typography>Categories</Typography>
+              <ul className="categoryBox">
+                {categories.map((category) =>(
+                  <li className="category-link"
+                   key={category}
+                   onClick={()=> setCategory(category)}>
+                   {category} 
+                  </li>
+                ))}
+              </ul>
+            </div>
+          
+            <div className="paginatonBox">
               <Pagination activePage={currentPage}
                 itemsCountPerPage={resultParPage}
                 totalItemsCount={productsCount}
@@ -78,9 +103,7 @@ const Products = () => {
                 activeClass="pageItemActive"
                 activeLinkClass="pageLinkActive"
               />
-            </div>
-            )
-          }
+            </div> 
         </div>
       </>}</div>
     </>
