@@ -1,14 +1,24 @@
 import React from "react";
 import "./LoginSignUp.css";
-import loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
-import { MdNoMealsOuline } from "react-icons/md";
+import {useAlert} from "react-alert";
 
-const LoginSignUp = () => {
+import {useDispatch, useSelector} from 'react-redux';
+import {clearErrors, login, register} from '../../action/userAction';
+import Loader from "../layout/Loader/Loader";
+import { Dialog } from "@material-ui/core";
+
+const LoginSignUp = ({history}) => {
+
+  const dispatch = useDispatch();
+  const alert = useAlert();
+
+  const { error,loading, isAuthenticated  } = useSelector(state => state.user)
+
   const loginTab = useRef(null);
   const registerTab = useRef(null);
   const switcherTab = useRef(null);
@@ -27,8 +37,9 @@ const LoginSignUp = () => {
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
   
-  const loginSubmit = () => {
-    console.log(" Login Form Submitted");
+  const loginSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(loginEmail, loginPassword))
   };
 
   const registerSubmit = (e) => {
@@ -39,7 +50,7 @@ const LoginSignUp = () => {
     myForm.set("email",email);
     myForm.set("password",password);
     myForm.set("avatar",avatar);
-    console.log(" Signup Form Submitted");
+    dispatch(register (myForm))
 
   }
   const registerDataChange = (e) => {
@@ -58,6 +69,17 @@ const LoginSignUp = () => {
       setUser({ ...user, [e.target.name]:e.target.value})
     }
   }
+  useEffect(() => {
+    if(error){
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+    if(isAuthenticated){
+    // Uncaught TypeError: Cannot read properties of undefined (reading 'push') --->
+     history.push("/account")
+    }
+  }, [dispatch, error, alert, history, isAuthenticated ])
+  
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -77,7 +99,7 @@ const LoginSignUp = () => {
   };
   return (
     <>
-      <div className="LoginSignUpContainer">
+      { loading ? <Loader/> : <div className="LoginSignUpContainer">
         <div className="LoginSignUpBox">
           <div>
             <div className="login_signUp_toggle">
@@ -118,45 +140,48 @@ const LoginSignUp = () => {
           onSubmit={registerSubmit}
           >
           <div className="signUpName">
-            <FaceIcon/>
-            <input
-                type="text"
-                placeholder="Name"
-                required
-                value={name}
-                onChange={registerDataChange}
-              />
-          </div>
-          <div className="signUpEmail">
-          <MailOutlineIcon />
-          <input
-                type="email"
-                placeholder="Email"
-                required
-                value={email}
-                onChange={registerDataChange}
-            />
-         </div>
-         <div className="signUpPassword">
-              <LockOpenIcon />
-              <input
-                type="password"
-                placeholder="Password"
-                required
-                value={password}
-                onChange={registerDataChange}
-              />
-        </div>
-
-        <div id="registerImage">
-            <img src={avatarPreview} alt="AvatarPrivew" />
-            <input
-                type="file"
-                placeholder="avatar"
-                accept="image/*"
-                onChange={registerDataChange}
-            />
-        </div>
+                  <FaceIcon />
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    required
+                    name="name"
+                    value={name}
+                    onChange={registerDataChange}
+                  />
+                </div>
+                <div className="signUpEmail">
+                  <MailOutlineIcon />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    required
+                    name="email"
+                    value={email}
+                    onChange={registerDataChange}
+                  />
+                </div>
+                <div className="signUpPassword">
+                  <LockOpenIcon />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    required
+                    name="password"
+                    autoComplete="on"
+                    value={password}
+                    onChange={registerDataChange}
+                  />
+                </div>
+                <div id="registerImage">
+                  <img src={avatarPreview} alt="Avatar Preview" />
+                  <input
+                    type="file"
+                    name="avatar"
+                    accept="image/*"
+                    onChange={registerDataChange}
+                  />
+                </div>
         <input
                 type="submit"
                 placeholder="register"
@@ -166,6 +191,7 @@ const LoginSignUp = () => {
 
         </div>
       </div>
+      }
     </>
   );
 };

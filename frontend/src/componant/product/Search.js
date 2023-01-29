@@ -10,6 +10,7 @@ const Search = ({history}) => {
             history.push(`/Products/${keyword}`)
         }
         else{
+            // Push is undefined ---> According to Error.
             history.push("/Products")
         }
     }
