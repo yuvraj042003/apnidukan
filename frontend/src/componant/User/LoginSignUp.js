@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
+import { MdNoMealsOuline } from "react-icons/md";
 
 const LoginSignUp = () => {
   const loginTab = useRef(null);
@@ -41,33 +42,33 @@ const LoginSignUp = () => {
     console.log(" Signup Form Submitted");
 
   }
-  const registerDataChange = (e) =>{
-    if(e.target.name === "avatar") {
+  const registerDataChange = (e) => {
+    if(e.target.name === "avatar"){
       const reader = new FileReader();
-
       reader.onload = () => {
-        if(reader.readyState === 2) {
+        if(reader.result === 2){
           setAvatarPreview(reader.result);
           setAvatar(reader.result);
         }
+
       }
-      reader.readAsDataURL(e.target.files)
+      reader.readAsDataURL(e.target.files[0]);
     }
     else{
-      setUser({...user, [e.target.name]:e.target.value });
+      setUser({ ...user, [e.target.name]:e.target.value})
     }
   }
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
       switcherTab.current.classList.add("shiftToNeutral");
-      switcherTab.current.classList.remove("shiftToRigth");
+      switcherTab.current.classList.remove("shiftToRight");
 
       registerTab.current.classList.remove("shiftToNeutralForm");
       loginTab.current.classList.remove("shiftToLeft");
     }
     if (tab === "register") {
-      switcherTab.current.classList.add("shiftToRigth");
+      switcherTab.current.classList.add("shiftToRight");
       switcherTab.current.classList.remove("shiftToNeutral");
 
       registerTab.current.classList.add("shiftToNeutralForm");
@@ -112,7 +113,7 @@ const LoginSignUp = () => {
 
           <form 
           className="signUpForm"
-          ref="registerForm"
+          ref={registerTab}
           encType="multipart/form-type"
           onSubmit={registerSubmit}
           >

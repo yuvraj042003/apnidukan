@@ -8,7 +8,7 @@ import Home from "./componant/layout/Home.js"
 import ProductDetails from "./componant/product/productDetails.js";
 import Products from './componant/product/Products.js'
 import Search from './componant/product/Search.js'
-import LoginSignUp from "./componant/User/LoginSignUp.js";
+import LoginSignUp from './componant/User/LoginSignUp.js';
 
 function App() {
 
