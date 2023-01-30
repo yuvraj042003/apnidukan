@@ -2,16 +2,19 @@
 import React, {useState} from 'react'
 import './Search.css';
 import MetaData from '../layout/metadata'
-const Search = ({history}) => {
+import { useNavigate } from 'react-router-dom';
+const Search = () => {
     const [keyword, setKeyword] = useState("")
+    const navigate = useNavigate();
     const searchSubmitHandler = (e) =>{
+        
         e.preventDefault();
         if(keyword.trim()){
-            history.push(`/Products/${keyword}`)
+            navigate(`/Products/${keyword}`)
         }
         else{
-            // Push is undefined ---> According to Error.
-            history.push("/Products")
+            // Push is undefined ---> According to Error. -->>>> Resolved ###
+            navigate("/Products");
         }
     }
     return (

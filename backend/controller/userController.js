@@ -8,7 +8,7 @@ const cloudinary = require("cloudinary");
 exports.registerUser = catchAsyncError(async (req, res, next) => {
   // Add the my cloud function ---> 
 const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-  folder: "avatar",
+  folder: "avatars",
   width: 150,
   crop: "scale"
 })
@@ -134,7 +134,7 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-// Get User Ditels
+// Get User Details
 exports.getUserDetails = catchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.user.id);
   res.status(200).json({

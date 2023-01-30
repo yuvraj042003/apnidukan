@@ -1,6 +1,6 @@
 import React from "react";
 import "./LoginSignUp.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
@@ -10,12 +10,13 @@ import {useAlert} from "react-alert";
 import {useDispatch, useSelector} from 'react-redux';
 import {clearErrors, login, register} from '../../action/userAction';
 import Loader from "../layout/Loader/Loader";
-import { Dialog } from "@material-ui/core";
 
-const LoginSignUp = ({history}) => {
+
+const LoginSignUp = () => {
 
   const dispatch = useDispatch();
   const alert = useAlert();
+  const navigate = useNavigate();
 
   const { error,loading, isAuthenticated  } = useSelector(state => state.user)
 
@@ -41,6 +42,27 @@ const LoginSignUp = ({history}) => {
     e.preventDefault();
     dispatch(login(loginEmail, loginPassword))
   };
+
+  
+    
+    // const uploadImg = (file) => {
+    //   const data = new FormData()
+    //   data.append("file", "image")
+    //   data.append("upload_preset", "tutorial")
+    //   data.append("cloud_name","breellz")
+    //   fetch("  https://api.cloudinary.com/v1_1/breellz/image/upload",{
+    //   method:"post",
+    //   body: data
+    //   })
+    //   .then(resp => resp.json())
+    //   .then(data => {
+    //   // setUrl(data.url)
+    //   setAvatar(data.url);
+    //   console.log(data.url)
+    //   })
+    //   .catch(err => console.log(err))
+    //   }
+          
 
   const registerSubmit = (e) => {
     e.preventDefault();
@@ -75,10 +97,10 @@ const LoginSignUp = ({history}) => {
       dispatch(clearErrors());
     }
     if(isAuthenticated){
-    // Uncaught TypeError: Cannot read properties of undefined (reading 'push') --->
-     history.push("/account")
+    // Uncaught TypeError: Cannot read properties of undefined (reading 'push') --->  #### F-I-X-E-D ####
+     navigate("/account")
     }
-  }, [dispatch, error, alert, history, isAuthenticated ])
+  }, [dispatch, error, alert, navigate, isAuthenticated ])
   
 
   const switchTabs = (e, tab) => {
@@ -177,7 +199,7 @@ const LoginSignUp = ({history}) => {
                   <img src={avatarPreview} alt="Avatar Preview" />
                   <input
                     type="file"
-                    name="avatar"
+                    name="avatars"
                     accept="image/*"
                     onChange={registerDataChange}
                   />

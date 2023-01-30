@@ -9,8 +9,20 @@ import ProductDetails from "./componant/product/productDetails.js";
 import Products from './componant/product/Products.js'
 import Search from './componant/product/Search.js'
 import LoginSignUp from './componant/User/LoginSignUp.js';
+//import WebFont from "webfontloader";
+import store from "./store";
+import { loadUser } from "./action/userAction";
+
 
 function App() {
+  React.useEffect(() => {
+    // WebFont.load({
+    //   google: {
+    //     families: ["Roboto", "Droid", "Chilanka"]
+    //   }
+    // })
+      store.dispatch(loadUser());
+  }, [])
 
   return (
     <>
