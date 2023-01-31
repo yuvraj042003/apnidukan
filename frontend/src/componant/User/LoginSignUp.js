@@ -7,6 +7,7 @@ import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
 import {useAlert} from "react-alert";
 
+
 import {useDispatch, useSelector} from 'react-redux';
 import {clearErrors, login, register} from '../../action/userAction';
 import Loader from "../layout/Loader/Loader";
@@ -44,23 +45,24 @@ const LoginSignUp = () => {
   };
 
   /////////////////////////////////// FOR UPLOAD IMAGE IN CLOUDINARY /////////////////////////////
-    
+    // Changes Success
     const uploadImg = (file) => {
       console.log(file)
       const data = new FormData()
       data.append("file", file)
       data.append("upload_preset", "radr1w4p")
       data.append("cloud_name","dlch8tvdz")
-      fetch("https://api.cloudinary.com/v1_1/dlch8tvdz/image/upload",{
-      method:"post",
-      body: data
+      fetch("https://api.cloudinary.com/v1_1/dlch8tvdz/image/upload", {
+        method: "post",
+        body: data,
       })
-      .then(resp => resp.json())
-      .then(data => {
-       console.log(data.url)
-      // setAvatar(data.url);
-      // console.log(data.url)
-      })
+      .then((res) => res.json())
+        .then((data) => {
+          // setPic(data.url.toString());
+          console.log(data)
+          console.log(data.url.toString());
+          // setPicLoading(false);
+        })
       .catch(err => console.log(err))
       }
           
