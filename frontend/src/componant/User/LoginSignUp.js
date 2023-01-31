@@ -45,23 +45,24 @@ const LoginSignUp = () => {
 
   /////////////////////////////////// FOR UPLOAD IMAGE IN CLOUDINARY /////////////////////////////
     
-    // const uploadImg = (file) => {
-    //   const data = new FormData()
-    //   data.append("file", "image")
-    //   data.append("upload_preset", "tutorial")
-    //   data.append("cloud_name","breellz")
-    //   fetch("  https://api.cloudinary.com/v1_1/breellz/image/upload",{
-    //   method:"post",
-    //   body: data
-    //   })
-    //   .then(resp => resp.json())
-    //   .then(data => {
-    //   // setUrl(data.url)
-    //   setAvatar(data.url);
-    //   console.log(data.url)
-    //   })
-    //   .catch(err => console.log(err))
-    //   }
+    const uploadImg = (file) => {
+      console.log(file)
+      const data = new FormData()
+      data.append("file", file)
+      data.append("upload_preset", "radr1w4p")
+      data.append("cloud_name","dlch8tvdz")
+      fetch("https://api.cloudinary.com/v1_1/dlch8tvdz/image/upload",{
+      method:"post",
+      body: data
+      })
+      .then(resp => resp.json())
+      .then(data => {
+       console.log(data.url)
+      // setAvatar(data.url);
+      // console.log(data.url)
+      })
+      .catch(err => console.log(err))
+      }
           
 
   const registerSubmit = (e) => {
@@ -207,7 +208,7 @@ const LoginSignUp = () => {
                     type="file"
                     name="avatars"
                     accept="image/*"
-                    onChange={registerDataChange}
+                    onChange={(e)=>{uploadImg(e.target.files[0])}}
                   />
                 </div>
         <input
