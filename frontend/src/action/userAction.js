@@ -87,21 +87,18 @@ export const loadUser = ()=> async(dispatch)=>{
 
 // LOGOUT USER FUNCTION 
 
-export const logoutUser = ()=> async(dispatch)=>{
+export const logout = ()=> async(dispatch)=>{
     try {
-       dispatch({type:LOAD_USER_REQUEST});
-      
-       let link = `http://localhost:4000/api/v1/me`
+        let link = `http://localhost:4000/api/v1/logout`
         const {data} = await axios.get(link);
 
         dispatch({
             type:LOAD_USER_SUCCESS,
-            payload:data.user,
         })
     } catch (error) {
         
         dispatch({
-            type:LOAD_USER_FAIL,
+            type:LOGOUT_FAIL,
             payload:error.response.data.error,
         });
     }

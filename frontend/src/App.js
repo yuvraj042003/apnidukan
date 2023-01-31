@@ -10,10 +10,12 @@ import Products from './componant/product/Products.js'
 import Search from './componant/product/Search.js'
 import LoginSignUp from './componant/User/LoginSignUp.js';
 //import WebFont from "webfontloader";
+import Profile from './componant/User/Profile.js';
 import store from "./store";
 import { loadUser } from "./action/userAction";
 import UserOptions from "./componant/layout/Headere/UserOptions.js"
 import { useSelector } from "react-redux";
+
 
 
 
@@ -42,6 +44,7 @@ function App() {
             <Route path="/products/:keyword" element={ <Products/> } />
             <Route extact path="/search" element={ <Search/> } />
             <Route extact path="/login" element={ <LoginSignUp/> } />
+            <Route extact path="/account" element={ <Profile/> } />
            
             {/* <Route extact path="/product/:id" element={<ProductDetails/> } /> */}
         </Routes>
