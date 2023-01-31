@@ -11,6 +11,9 @@ import {
     LOAD_USER_SUCCESS,
     LOAD_USER_FAIL,
 
+    LOGOUT_SUCCESS,
+    LOGOUT_FAIL,
+
     CLEAR_ERRORS,
 } from "../../src/constant/userConstant";
 import axios from "axios";
@@ -63,6 +66,28 @@ export const register = (userData)=> async(dispatch)=>{
 
 // Loading User Function
 export const loadUser = ()=> async(dispatch)=>{
+    try {
+       dispatch({type:LOAD_USER_REQUEST});
+      
+       let link = `http://localhost:4000/api/v1/me`
+        const {data} = await axios.get(link);
+
+        dispatch({
+            type:LOAD_USER_SUCCESS,
+            payload:data.user,
+        })
+    } catch (error) {
+        
+        dispatch({
+            type:LOAD_USER_FAIL,
+            payload:error.response.data.error,
+        });
+    }
+};
+
+// LOGOUT USER FUNCTION 
+
+export const logoutUser = ()=> async(dispatch)=>{
     try {
        dispatch({type:LOAD_USER_REQUEST});
       

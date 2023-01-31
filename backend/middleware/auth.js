@@ -5,6 +5,7 @@ const User = require("../models/userModel");
 const { Error } = require("mongoose");
 exports.isauthenticatedUser = catchAsyncError(async (req, res, next) => {
   const { token } = req.cookies;
+  console.log("Check Cookies----->>>>>>", req.cookies);
   if (!token) {
     return next(new ErrorHandler("Please login to access this resource.", 401));
   }

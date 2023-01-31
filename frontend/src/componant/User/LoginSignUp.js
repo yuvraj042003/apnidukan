@@ -19,7 +19,7 @@ const LoginSignUp = () => {
   const navigate = useNavigate();
 
   const { error,loading, isAuthenticated  } = useSelector(state => state.user)
-
+  console.log("is Autheticated ---->>>>>>", isAuthenticated);
   const loginTab = useRef(null);
   const registerTab = useRef(null);
   const switcherTab = useRef(null);
