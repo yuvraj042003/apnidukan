@@ -23,7 +23,7 @@ class ApiFeatures{
         
         removeFields.forEach(key=>delete querycopy [key]);
         this.query = this.query.find(querycopy);
-        return this;
+        // return this;
 
         // Filter for price and rating
         let queryStr = JSON.stringify(querycopy);

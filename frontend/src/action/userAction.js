@@ -23,7 +23,12 @@ import {
     UPDATE_PASSWORD_SUCCESS,
     UPDATE_PASSWORD_FAIL,
 
+    FORGOT_PASSWORD_REQUEST,
+    FORGOT_PASSWORD_SUCCESS,
+    FORGOT_PASSWORD_FAIL,
+
     CLEAR_ERRORS,
+    
 } from "../../src/constant/userConstant";
 import axios from "axios";
 
@@ -99,9 +104,10 @@ export const loadUser = ()=> async(dispatch)=>{
 export const logout = ()=> async(dispatch)=>{
     try {
         let link = `http://localhost:4000/api/v1/logout`
-        const {data} = await axios.get(link);
+        await axios.get(link);
         dispatch({
             type:LOGOUT_SUCCESS,
+            
         })
     } catch (error) {
         
@@ -158,6 +164,30 @@ export const updatePassword = (passwords)=> async(dispatch)=>{
      }
 }
 
+
+// Forgot Password
+// Login Function
+export const forgotPassword = (email)=> async(dispatch)=>{
+    try {
+       dispatch({type:FORGOT_PASSWORD_REQUEST});
+       const config = {Headers: {"Content-Type": "application/json"}}
+       let link = `http://localhost:4000/api/v1/password/forgot`
+        const {data} = await axios.post(link,
+         {email},
+         config );
+
+        dispatch({
+            type:FORGOT_PASSWORD_SUCCESS,
+            payload:data.message,
+        })
+    } catch (error) {
+        
+        dispatch({
+            type:FORGOT_PASSWORD_FAIL,
+            payload:error.response.data.error,
+        });
+    }
+};
 
 // Clear Error
 export const clearErrors = ()=> async(dispatch)=>{

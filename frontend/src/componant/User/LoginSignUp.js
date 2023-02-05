@@ -35,7 +35,7 @@ const LoginSignUp = () => {
   );
   const { name, email, password } = user;
 /// C H A N G E S
-  const [avatar, setAvatar] = useState("/Profile.png");
+  const [avatar, setAvatar] = useState("https://cdn.vectorstock.com/i/1000x1000/32/12/default-avatar-profile-icon-vector-39013212.webp");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
   // FOR COKKIES RELATE PROBLEM
@@ -43,6 +43,7 @@ const LoginSignUp = () => {
     e.preventDefault();
     dispatch(login(loginEmail, loginPassword))
   };
+  
 
   /////////////////////////////////// FOR UPLOAD IMAGE IN CLOUDINARY /////////////////////////////
     // Changes Success
@@ -62,6 +63,7 @@ const LoginSignUp = () => {
           console.log(data)
           console.log(data.url.toString());
           // setPicLoading(false);
+          setAvatar(data.url.toString())
         })
       .catch(err => console.log(err))
       }
@@ -154,7 +156,7 @@ const LoginSignUp = () => {
                 onChange={(e) => setLoginPassword(e.target.value)}
               />
             </div>
-            <Link to="forget/password">Forget Password ?</Link>
+            <Link to="/password/forgot">Forget Password ?</Link>
             <input type="submit" value="Login" className="loginBtn" />
           </form>
 

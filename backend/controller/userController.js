@@ -6,27 +6,23 @@ const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const cloudinary = require("cloudinary");
 exports.registerUser = catchAsyncError(async (req, res, next) => {
-  // Add the my cloud function ---> 
-// const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-//   folder: "avatars",
-//   width: 150,
-//   crop: "scale"
-// })
-
-  const { name, email, password } = req.body;
+  try {
+    const { name, email, password, avatar } = req.body;
+  console.log(req.body);
 
   const user = await User.create({
     name,
     email,
     password,
-    avatar: {
-      // Here add user functinality cloudnarry ---> 
-      public_id: "myCloud.public_id",
-      url: "myCloud.secure_url",
-    },
+    avatar,
   });
+  console.log(user);
 
   sendToken(user, 201, res);
+  } catch (error) {
+    console.log(error);
+  } 
+  
 });
 
 // LOGIN USER
