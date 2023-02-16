@@ -16,22 +16,24 @@ class ApiFeatures{
         this.query = this.query.find({...keyword});
         return this;
     }
-    filter(){
-        const querycopy = {...this.queryStr};
-        // Remove field and its categry
-        const removeFields = ["keyword","page","limit"];
+    filter() {
         
-        removeFields.forEach(key=>delete querycopy [key]);
-        this.query = this.query.find(querycopy);
-        // return this;
-
-        // Filter for price and rating
-        let queryStr = JSON.stringify(querycopy);
-        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (key)=> `$${key}`);
-
+        const queryCopy = { ...this.queryStr };
+        //   Removing some fields for category
+        const removeFields = ["keyword", "page", "limit"];
+        
+    
+        removeFields.forEach((key) => delete queryCopy[key]);
+   
+        // Filter For Price and Rating
+    
+        let queryStr = JSON.stringify(queryCopy);
+        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (key) => `$${key}`);
+    
         this.query = this.query.find(JSON.parse(queryStr));
+    
         return this;
-    }
+      }
     pagination(resultParPage){
         const currentPage  = Number(this.queryStr.page) || 1;
         const skip = resultParPage * (currentPage - 1);

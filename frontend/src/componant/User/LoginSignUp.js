@@ -201,11 +201,7 @@ const LoginSignUp = () => {
                   />
                 </div>
 
-        {/* CHANGES FILE IN AND IN BACKEND 2 FILES TOUCHED 
-        1. SERVER.JS IN BACKEND FOR ADD CLOUDINARY CLOUD
-        2. USERCONTROLLER > REGISTER_USER > CHANGE DATA
-        3. CREATE A FOLDER ON THE AVATARS. ALL SECRET CODE SEND THROUGH THE WHATSSAPP
-        CODE PUSHED */}
+        {/* // FIXED */}
                 <div id="registerImage">
                   <img src={avatarPreview} alt="Avatar Preview" />
                   <input

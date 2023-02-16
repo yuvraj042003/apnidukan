@@ -34,7 +34,7 @@ const Products = () => {
   const alert = useAlert();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [amount, setAmount] = useState([0, 25000]);
+  const [price, setPrice] = useState([0, 25000]);
   const [category, setCategory] = useState("")
   const [ratings, setRatings] = useState(0)
 
@@ -50,7 +50,7 @@ const Products = () => {
     setCurrentPage(e)
   }
   const priceHandler = (Event, newAmount) => {
-    setAmount(newAmount);
+    setPrice(newAmount);
   }
   const params = useParams();
   const keyword = params.keyword
@@ -61,8 +61,8 @@ const Products = () => {
       dispatch(clearErrors());
     }
 
-    dispatch(getProduct(keyword, currentPage, amount, category,ratings));
-  }, [dispatch, keyword, currentPage, amount, category,ratings,alert, error]);
+    dispatch(getProduct(keyword, currentPage, price, category,ratings));
+  }, [dispatch, keyword, currentPage, price, category,ratings,alert, error]);
   
   return (
     <>
@@ -79,7 +79,7 @@ const Products = () => {
            <div className="filterBox">
             <Typography><b>Price</b></Typography>
             <Slider
-              value={amount}
+              value={price}
               onChange={priceHandler}
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
