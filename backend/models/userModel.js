@@ -58,11 +58,11 @@ userSchema.methods.comparePassword = async function (password) {
  return await bcrypt.compare(password, this.password);
 };
 // Genrating User Password Reset Model
-userSchema.methods.getResetPasswordToken = function (){
+userSchema.methods.getResetPasswordToken = async function (){
   // Genrating Token
-  const resetToken = crypto.randomBytes(20).toString("hex");
+  const resetToken = await crypto.randomBytes(20).toString("hex");
   // Hashing and adding to userSchema in the Password
-  this.resetPasswordToken = crypto
+  this.resetPasswordToken = await crypto
   .createHash("sha256")
   .update(resetToken)
   .digest("hex");

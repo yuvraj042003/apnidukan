@@ -24,7 +24,7 @@ const LoginSignUp = () => {
   const loginTab = useRef(null);
   const registerTab = useRef(null);
   const switcherTab = useRef(null);
-
+  
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [user, setUser] = useState({
@@ -33,6 +33,7 @@ const LoginSignUp = () => {
     password: ""
 }
   );
+  console.log(loginEmail);
   const { name, email, password } = user;
 /// C H A N G E S
   const [avatar, setAvatar] = useState("https://cdn.vectorstock.com/i/1000x1000/32/12/default-avatar-profile-icon-vector-39013212.webp");
