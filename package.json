@@ -27,6 +27,7 @@
     "nodemon": "^2.0.20",
     "overlay-navbar": "^1.2.3",
     "react-router-dom": "^6.6.1",
+    "stripe": "^11.11.0",
     "validator": "^13.7.0"
   }
 }
