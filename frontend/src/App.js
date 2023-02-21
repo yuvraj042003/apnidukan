@@ -20,7 +20,8 @@ import UpdateProfile from "./componant/User/UpdateProfile.js";
 import UpdatePassword from "./componant/User/UpdatePassword.js";
 import ForgotPassword from "./componant/User/ForgotPassword.js";
 import ResetPassword from "./componant/User/ResetPassword.js";
-import Cart from "./componant/Cart/Cart.js"
+import Cart from "./componant/Cart/Cart.js";
+import ConfirmOrder from "./componant/Cart/ConfirmOrder.js";
 
 
 
@@ -57,6 +58,7 @@ function App() {
             <Route extact path="/password/forgot" element={ <ForgotPassword/> } />
             <Route extact path="/password/reset/:token" element={ <ResetPassword/> } />
             <Route extact path="/cart" element={ <Cart/>} />
+            <Route extact path="/order/confirm" element={ <ConfirmOrder/>} />
 
             
            

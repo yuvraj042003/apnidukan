@@ -92,7 +92,7 @@ const Shipping = () => {
               </div>
   
               <div>
-                <PhoneIcon />
+                <PhoneIcon/>
                 <input
                   type="number"
                   placeholder="Phone Number"
