@@ -22,6 +22,11 @@ import ForgotPassword from "./componant/User/ForgotPassword.js";
 import ResetPassword from "./componant/User/ResetPassword.js";
 import Cart from "./componant/Cart/Cart.js";
 import ConfirmOrder from "./componant/Cart/ConfirmOrder.js";
+import Payment from "./componant/Cart/Payment.js";
+
+
+import {useState} from "react";
+import axios from "axios"
 
 
 
@@ -30,13 +35,17 @@ import ConfirmOrder from "./componant/Cart/ConfirmOrder.js";
 function App() {
   
   const { isauthenticatedUser, user } = useSelector((state) => state.user);
+  const [stripeApiKey, setStripeApiKey] = useState("");
+
+  async function getStripeApiKey(){
+    const {data} = await axios.get("/api/v1/stripeapikey");
+    setStripeApiKey(data.stripeApiKey);
+  }
+
   React.useEffect(() => {
-    // WebFont.load({
-    //   google: {
-    //     families: ["Roboto", "Droid", "Chilanka"]
-    //   }
-    // })
+      
       store.dispatch(loadUser());
+      getStripeApiKey();
   }, [])
 
   return (
@@ -59,6 +68,7 @@ function App() {
             <Route extact path="/password/reset/:token" element={ <ResetPassword/> } />
             <Route extact path="/cart" element={ <Cart/>} />
             <Route extact path="/order/confirm" element={ <ConfirmOrder/>} />
+            <Route extact path="/process/payment" element={ <Payment/>} />
 
             
            
