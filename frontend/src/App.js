@@ -27,6 +27,7 @@ import Payment from "./componant/Cart/Payment.js";
 import OrderSuccess from "./componant/Cart/OrderSuccess.js";
 import { loadStripe } from "@stripe/stripe-js";
 import MyOrders from "./componant/Order/MyOrders.js";
+import OrderDetails from "./componant/Order/OrderDetails.js";
 
 
 import {useState} from "react";
@@ -81,6 +82,7 @@ function App() {
             <Route extact path="/order/confirm" element={ <ConfirmOrder/>} />
             <Route extact path="/success" element={ <OrderSuccess/>} />
             <Route extact path="/orders" element={ <MyOrders/>} />
+            <Route extact path="/order" element={ <OrderDetails/>} />
            
             {/* <Route extact path="/product/:id" element={<ProductDetails/> } /> */}
         </Routes>
