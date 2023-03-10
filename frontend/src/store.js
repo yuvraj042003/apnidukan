@@ -5,6 +5,7 @@ import {legacy_createStore as createStore} from 'redux';
 import { productReducer, productDetailsReducer } from './reducers/productReducer';
 import { forgotPasswordReducer, profileReducer, userReducer } from './reducers/userReducer';
 import { cartReducer } from './reducers/cartReducer';
+import { myOrdersReducer, newOrderReducer } from './reducers/orderReducer';
 
 const reducer = combineReducers({
 products:productReducer,
@@ -13,6 +14,9 @@ user: userReducer,
 profile:profileReducer,
 forgotPassword:forgotPasswordReducer,
 cart:cartReducer,
+newOrder:newOrderReducer,
+myOrders:myOrdersReducer,
+
 });
 let initialStore = {cart: {
     cartItems: localStorage.getItem("cartItems")

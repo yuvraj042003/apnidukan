@@ -21,12 +21,17 @@ import UpdatePassword from "./componant/User/UpdatePassword.js";
 import ForgotPassword from "./componant/User/ForgotPassword.js";
 import ResetPassword from "./componant/User/ResetPassword.js";
 import Cart from "./componant/Cart/Cart.js";
+import Shipping from "./componant/Cart/Shipping";
 import ConfirmOrder from "./componant/Cart/ConfirmOrder.js";
 import Payment from "./componant/Cart/Payment.js";
+import OrderSuccess from "./componant/Cart/OrderSuccess.js";
+import { loadStripe } from "@stripe/stripe-js";
+import MyOrders from "./componant/Order/MyOrders.js";
 
 
 import {useState} from "react";
 import axios from "axios"
+import { Elements } from "@stripe/react-stripe-js";
 
 
 
@@ -54,6 +59,11 @@ function App() {
       <Header />
       
         <Routes>
+          {stripeApiKey && ( 
+          <Elements stripe={loadStripe(stripeApiKey)}>
+          <ProtectedRoute extact path="/process/payment" element={ <Payment/>} />
+          </Elements>
+          )}
             {isauthenticatedUser && <UserOptions user={ user } />}
             <Route extact path="/" element={ <Home/> } />
             <Route extact path="/product/:id" element={ <ProductDetails/> } />
@@ -67,10 +77,10 @@ function App() {
             <Route extact path="/password/forgot" element={ <ForgotPassword/> } />
             <Route extact path="/password/reset/:token" element={ <ResetPassword/> } />
             <Route extact path="/cart" element={ <Cart/>} />
-            <Route extact path="/order/confirm" element={ <ConfirmOrder/>} />
-            <Route extact path="/process/payment" element={ <Payment/>} />
-
-            
+            <ProtectedRoute extact path="/shipping" element={ <Shipping/>} />
+            <ProtectedRoute extact path="/order/confirm" element={ <ConfirmOrder/>} />
+            <ProtectedRoute extact path="/success" element={ <OrderSuccess/>} />
+            <ProtectedRoute extact path="/orders" element={ <MyOrders/>} />
            
             {/* <Route extact path="/product/:id" element={<ProductDetails/> } /> */}
         </Routes>

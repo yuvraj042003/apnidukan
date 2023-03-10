@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useRef } from "react";
-import CheckoutSteps from "../Cart/CheckoutSteps";
+import CheckoutSteps from "./Checkoutstep";
 import { useSelector, useDispatch } from "react-redux";
-import MetaData from "../layout/MetaData";
+import MetaData from '../layout/metadata';
 import { Typography } from "@material-ui/core";
 import { useAlert } from "react-alert";
 import {
@@ -13,11 +13,11 @@ import {
 } from "@stripe/react-stripe-js";
 
 import axios from "axios";
-import "./payment.css";
+import "./Payment.css";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import EventIcon from "@material-ui/icons/Event";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
-import { createOrder, clearErrors } from "../../actions/orderAction";
+import { createOrder, clearErrors } from "../../action/orderAction";
 import {useNavigate} from "react";
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -58,7 +58,7 @@ const Payment = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/v1/payment/process",
+        "http://localhost:4000/api/v1/payment/process",
         paymentData,
         config
       );

@@ -7,6 +7,7 @@ import {getProduct} from '../../action/productAction';
 import {useDispatch, useSelector} from 'react-redux';
  import Loader from './Loader/Loader';
  import { useAlert } from 'react-alert';
+ import { CgMouse } from "react-icons/cg";
  
 
 
@@ -33,7 +34,7 @@ const Home = () => {
       <div className="banner">
       <h1>Welcome to Apni dukan</h1>
       <p>Find Amazing product below</p>
-      <Link className='scrol' to="container"><button className='btn'><b>Scroll </b></button></Link>
+      <Link className='scrol' to="container"><button className='btn'><b>Scroll {CgMouse}</b></button></Link>
       
       </div>
       <h2 className='homeHeading'>Featured Products</h2>
