@@ -68,7 +68,8 @@ export const register = (userData)=> async(dispatch)=>{
          const {data} = await axios.post(link,
           userData,
           config );
- 
+        console.log("user dataa-->", data);
+        localStorage.setItem('userInfo',JSON.stringify(data.user));
          dispatch({
              type:REGISTER_USER_SUCCESS,
              payload:data.user,
@@ -86,10 +87,8 @@ export const register = (userData)=> async(dispatch)=>{
 export const loadUser = ()=> async(dispatch)=>{
     try {
        dispatch({type:LOAD_USER_REQUEST});
-      
-       let link = `http://localhost:4000/api/v1/me`
-        const {data} = await axios.get(link);
-
+        const {data} = JSON.parse(localStorage.getItem("userInfo"));
+        console.log("user dataa-->", data);
         dispatch({
             type:LOAD_USER_SUCCESS,
             payload:data.user,
