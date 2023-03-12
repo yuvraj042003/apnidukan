@@ -7,8 +7,12 @@ import { Typography } from "@material-ui/core";
 import { getOrderDetails, clearErrors } from "../../../src/action/orderAction";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
+<<<<<<< HEAD
 import MetaData from '../layout/metadata';
 
+=======
+import MetaData from '../layout/metadata'
+>>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
 const OrderDetails = () => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const dispatch = useDispatch();
@@ -120,4 +124,8 @@ const OrderDetails = () => {
   );
 };
 
+<<<<<<< HEAD
 export default OrderDetails;
+=======
+export default OrderDetails;
+>>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
