@@ -28,7 +28,7 @@ const UserOptions = ({user}) => {
     }
 
     function dashboard(){
-        navigate("/dashboard");
+        navigate("/admin/dashboard");
     }
     function orders(){
         navigate("/orders");
@@ -47,9 +47,9 @@ const UserOptions = ({user}) => {
         <SpeedDial 
         ariaLabel='SpeedDial Tooltip Example'
         className='speedDial'
-        onClose={() =>setOpen=(false)}
+        onClose={() =>setOpen(false)}
         style={{zIndex: "11"}}
-        onOpen = {() => setOpen=(true)}
+        onOpen = {() => setOpen(true)}
         open={open}
         direction="down"
         icon={

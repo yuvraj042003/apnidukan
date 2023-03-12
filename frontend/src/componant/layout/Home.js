@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import "../layout/Headere/Home.css";
-import Product from "./Headere/ProductCard.js";
 import MetaData from './metadata';
 import {getProduct} from '../../action/productAction';
 import {useDispatch, useSelector} from 'react-redux';
  import Loader from './Loader/Loader';
  import { useAlert } from 'react-alert';
  import { CgMouse } from "react-icons/cg";
+import ProductCard from './Headere/ProductCard.js';
  
 
 
@@ -42,7 +42,7 @@ const Home = () => {
         
        {
         products && products.map(product => (
-          <Product product={product}/>
+          <ProductCard product={product}/>
         ))
        }
       </div>

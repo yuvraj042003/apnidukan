@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, Route, Navigate } from "react-router-dom";
+import { useNavigate, Route,} from "react-router-dom";
 
 const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
   const { loading, isAuthenticated, user } = useSelector((state) => state.user);
-  const Naavigate = useNavigate();
+  const Navigate = useNavigate();
   return (
     <Fragment>
       {loading === false && (

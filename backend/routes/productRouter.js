@@ -5,13 +5,15 @@ const {getAllProducts,
       deleteProduct,
       getProductDetail, createProductReview,
       getProductReviews, 
-      deleteReview} = require("../controller/procutController");
+      deleteReview,
+      getAdminProducts} = require("../controller/procutController");
 const { isauthenticatedUser, authrizedRoles} = require("../middleware/auth");
 const router =express.Router();
 
 
 
 router.route("/products").get(getAllProducts);
+router.route("/admin/products").get(isauthenticatedUser, authrizedRoles("admin"), getAdminProducts);
 router.route("/admin/products/new")
       .post(isauthenticatedUser,authrizedRoles("admin"),createProduct);
 router.route("/admin/products/:id")

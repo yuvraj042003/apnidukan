@@ -15,7 +15,7 @@ import store from "./store";
 import { loadUser} from "./action/userAction";
 import UserOptions from "./componant/layout/Headere/UserOptions.js"
 import { useSelector } from "react-redux";
-import ProtectedRoute from "./componant/Route/ProtectedRoute";
+//import ProtectedRoute from "./componant/Route/ProtectedRoute";
 import UpdateProfile from "./componant/User/UpdateProfile.js";
 import UpdatePassword from "./componant/User/UpdatePassword.js";
 import ForgotPassword from "./componant/User/ForgotPassword.js";
@@ -27,16 +27,13 @@ import Payment from "./componant/Cart/Payment.js";
 import OrderSuccess from "./componant/Cart/OrderSuccess.js";
 import { loadStripe } from "@stripe/stripe-js";
 import MyOrders from "./componant/Order/MyOrders.js";
-
-
+import OrderDetails from "./componant/Order/OrderDetails.js";
 import {useState} from "react";
 import axios from "axios"
 import { Elements } from "@stripe/react-stripe-js";
-
-
-
-
-
+import Dashboard from "././componant/Admin/Dashboard"
+import ProductList from "././componant/Admin/ProductList.js"
+import NewProduct from "././componant/Admin/NewProduct.js"
 function App() {
   
   const { isauthenticatedUser, user } = useSelector((state) => state.user);
@@ -61,7 +58,7 @@ function App() {
         <Routes>
           {stripeApiKey && ( 
           <Elements stripe={loadStripe(stripeApiKey)}>
-          <ProtectedRoute extact path="/process/payment" element={ <Payment/>} />
+          <Route extact path="/process/payment" element={ <Payment/>} />
           </Elements>
           )}
             {isauthenticatedUser && <UserOptions user={ user } />}
@@ -77,10 +74,16 @@ function App() {
             <Route extact path="/password/forgot" element={ <ForgotPassword/> } />
             <Route extact path="/password/reset/:token" element={ <ResetPassword/> } />
             <Route extact path="/cart" element={ <Cart/>} />
-            <ProtectedRoute extact path="/shipping" element={ <Shipping/>} />
-            <ProtectedRoute extact path="/order/confirm" element={ <ConfirmOrder/>} />
-            <ProtectedRoute extact path="/success" element={ <OrderSuccess/>} />
-            <ProtectedRoute extact path="/orders" element={ <MyOrders/>} />
+            <Route extact path="/shipping" element={ <Shipping/>} />
+            <Route extact path="/success" element={ <OrderSuccess/>} />
+            <Route extact path="/orders" element={ <MyOrders/>} />
+            {/* USE SWITCH FOR PREVENT THE LOADING ERRORS */}
+            <Route extact path="/order/confirm" element={ <ConfirmOrder/>} />
+            <Route extact path="/order/:id" element={ <OrderDetails/>} />
+            {/* See Admin protcected route command */}
+            <Route isAdmin={true} extact path="/admin/dashboard" element={ <Dashboard/>} />
+            <Route isAdmin={true} extact path="/admin/products" element={ <ProductList/>} />
+            <Route isAdmin={true} extact path="/admin/new/product" element={ <NewProduct/>} />
            
             {/* <Route extact path="/product/:id" element={<ProductDetails/> } /> */}
         </Routes>

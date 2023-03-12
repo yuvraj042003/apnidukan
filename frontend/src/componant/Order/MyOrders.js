@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import { DataGrid } from "@material-ui/core/Grid/Grid";
+import DataGrid  from "@material-ui/core/Grid/Grid";
 import "./myOrders.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, myOrders } from "../../action/orderAction";

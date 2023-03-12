@@ -11,8 +11,6 @@ import Slider from '@material-ui/core/slider';
 import { Typography } from "@material-ui/core";
 import {useAlert} from "react-alert";
 import MetaData from "../layout/metadata";
-
-
 const categories = [
   "Laptop",
   "Watches",
