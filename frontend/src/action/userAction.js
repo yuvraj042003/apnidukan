@@ -71,13 +71,8 @@ export const register = (userData)=> async(dispatch)=>{
          const {data} = await axios.post(link,
           userData,
           config );
-<<<<<<< HEAD
           console.log("user dataa-->", data);
           localStorage.setItem('userInfo',JSON.stringify(data.user));
-=======
-        console.log("user dataa-->", data);
-        localStorage.setItem('userInfo',JSON.stringify(data.user));
->>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
          dispatch({
              type:REGISTER_USER_SUCCESS,
              payload:data.user,
@@ -95,14 +90,9 @@ export const register = (userData)=> async(dispatch)=>{
 export const loadUser = ()=> async(dispatch)=>{
     try {
        dispatch({type:LOAD_USER_REQUEST});
-<<<<<<< HEAD
       
        const {data} = JSON.parse(localStorage.getItem("userInfo"));
        console.log("user dataa-->", data);
-=======
-        const {data} = JSON.parse(localStorage.getItem("userInfo"));
-        console.log("user dataa-->", data);
->>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
         dispatch({
             type:LOAD_USER_SUCCESS,
             payload:data.user,

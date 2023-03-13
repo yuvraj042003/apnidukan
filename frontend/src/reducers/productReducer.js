@@ -20,15 +20,10 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_FAIL,
   PRODUCT_DETAILS_SUCCESS,
-<<<<<<< HEAD
-=======
-  
->>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
   NEW_REVIEW_REQUEST,
   NEW_REVIEW_SUCCESS,
   NEW_REVIEW_FAIL,
   NEW_REVIEW_RESET,
-<<<<<<< HEAD
   ALL_REVIEW_REQUEST,
   ALL_REVIEW_SUCCESS,
   ALL_REVIEW_FAIL,
@@ -36,9 +31,6 @@ import {
   DELETE_REVIEW_SUCCESS,
   DELETE_REVIEW_FAIL,
   DELETE_REVIEW_RESET,
-=======
-
->>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
   CLEAR_ERRORS,
 } from "../constant/productConstants";
 
@@ -224,7 +216,6 @@ export const newReviewReducer = (state = {}, action) => {
   }
 };
 
-<<<<<<< HEAD
 export const productReviewsReducer = (state = { reviews: [] }, action) => {
   switch (action.type) {
     case ALL_REVIEW_REQUEST:
@@ -238,43 +229,17 @@ export const productReviewsReducer = (state = { reviews: [] }, action) => {
         reviews: action.payload,
       };
     case ALL_REVIEW_FAIL:
-=======
-// Create Product Review
-export const newReviewReducer = ((state = { }, action) => {
-  switch (action.type) {
-    case NEW_REVIEW_REQUEST:
-      return {
-        loading: true,
-        ...state
-      };
-    case NEW_REVIEW_SUCCESS:
-      return {
-       loading:false,
-       success: action.payload
-      };
-    case NEW_REVIEW_FAIL:
->>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
-<<<<<<< HEAD
-=======
-    case NEW_REVIEW_RESET:
-        return {
-          ...state,
-          loading: false,
-          success: false,
-        };
->>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
 
     case CLEAR_ERRORS:
       return {
         ...state,
         error: null,
       };
-<<<<<<< HEAD
     default:
       return state;
   }
@@ -313,10 +278,3 @@ export const reviewReducer = (state = {}, action) => {
       return state;
   }
 };
-=======
-
-    default:
-      return state;
-  }
-});
->>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4

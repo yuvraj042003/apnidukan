@@ -15,11 +15,7 @@ import store from "./store";
 import { loadUser} from "./action/userAction";
 import UserOptions from "./componant/layout/Headere/UserOptions.js"
 import { useSelector } from "react-redux";
-<<<<<<< HEAD
 //import ProtectedRoute from "./componant/Route/ProtectedRoute";
-=======
-// import ProtectedRoute from "./componant/Route/ProtectedRoute";
->>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
 import UpdateProfile from "./componant/User/UpdateProfile.js";
 import UpdatePassword from "./componant/User/UpdatePassword.js";
 import ForgotPassword from "./componant/User/ForgotPassword.js";
@@ -32,11 +28,6 @@ import OrderSuccess from "./componant/Cart/OrderSuccess.js";
 import { loadStripe } from "@stripe/stripe-js";
 import MyOrders from "./componant/Order/MyOrders.js";
 import OrderDetails from "./componant/Order/OrderDetails.js";
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
 import {useState} from "react";
 import axios from "axios"
 import { Elements } from "@stripe/react-stripe-js";
@@ -84,7 +75,6 @@ function App() {
             <Route extact path="/password/reset/:token" element={ <ResetPassword/> } />
             <Route extact path="/cart" element={ <Cart/>} />
             <Route extact path="/shipping" element={ <Shipping/>} />
-<<<<<<< HEAD
             <Route extact path="/success" element={ <OrderSuccess/>} />
             <Route extact path="/orders" element={ <MyOrders/>} />
             {/* USE SWITCH FOR PREVENT THE LOADING ERRORS */}
@@ -94,12 +84,6 @@ function App() {
             <Route isAdmin={true} extact path="/admin/dashboard" element={ <Dashboard/>} />
             <Route isAdmin={true} extact path="/admin/products" element={ <ProductList/>} />
             <Route isAdmin={true} extact path="/admin/new/product" element={ <NewProduct/>} />
-=======
-            <Route extact path="/order/confirm" element={ <ConfirmOrder/>} />
-            <Route extact path="/success" element={ <OrderSuccess/>} />
-            <Route extact path="/orders" element={ <MyOrders/>} />
-            <Route extact path="/order" element={ <OrderDetails/>} />
->>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
            
             {/* <Route extact path="/product/:id" element={<ProductDetails/> } /> */}
         </Routes>
