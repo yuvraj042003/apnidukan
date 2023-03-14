@@ -1,7 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
-import "./NewProduct.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, createProduct } from "../../action/productAction";
+import {
+  clearErrors,
+  updateProduct,
+  getProductDetails,
+} from "../../action/productAction";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
 import MetaData from '../layout/metadata'
@@ -11,15 +14,22 @@ import StorageIcon from "@material-ui/icons/Storage";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
-import { NEW_PRODUCT_RESET } from "../../constant/productConstants";
-import {useNavigate} from "react-router-dom";
-///////////////////////////// Resolve Image Upload Issue and connect like as LoginSignup.js /////////////////
-const NewProduct = () => {
+import { UPDATE_PRODUCT_RESET } from "../../constant/productConstants";
+import { useNavigate, useParams } from "react-router-dom";
+
+const UpdateProduct = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const Navigate = useNavigate();
+  const params = useParams();
 
-  const { loading, error, success } = useSelector((state) => state.newProduct);
+  const { error, product } = useSelector((state) => state.productDetails);
+
+  const {
+    loading,
+    error: updateError,
+    isUpdated,
+  } = useSelector((state) => state.product);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -27,6 +37,7 @@ const NewProduct = () => {
   const [category, setCategory] = useState("");
   const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
+  const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
   const categories = [
@@ -43,20 +54,46 @@ const NewProduct = () => {
     "Fashin & Beauty"
   ];
 
+  const productId = params.id;
+
   useEffect(() => {
+    if (product && product._id !== productId) {
+      dispatch(getProductDetails(productId));
+    } else {
+      setName(product.name);
+      setDescription(product.description);
+      setPrice(product.price);
+      setCategory(product.category);
+      setStock(product.Stock);
+      setOldImages(product.images);
+    }
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
 
-    if (success) {
-      alert.success("Product Created Successfully");
-      Navigate("/admin/dashboard");
-      dispatch({ type: NEW_PRODUCT_RESET });
+    if (updateError) {
+      alert.error(updateError);
+      dispatch(clearErrors());
     }
-  }, [dispatch, alert, error, Navigate, success]);
 
-  const createProductSubmitHandler = (e) => {
+    if (isUpdated) {
+      alert.success("Product Updated Successfully");
+      Navigate("/admin/products");
+      dispatch({ type: UPDATE_PRODUCT_RESET });
+    }
+  }, [
+    dispatch,
+    alert,
+    error,
+    Navigate,
+    isUpdated,
+    productId,
+    product,
+    updateError,
+  ]);
+
+  const updateProductSubmitHandler = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
@@ -70,14 +107,15 @@ const NewProduct = () => {
     images.forEach((image) => {
       myForm.append("images", image);
     });
-    dispatch(createProduct(myForm));
+    dispatch(updateProduct(productId, myForm));
   };
 
-  const createProductImagesChange = (e) => {
+  const updateProductImagesChange = (e) => {
     const files = Array.from(e.target.files);
 
     setImages([]);
     setImagesPreview([]);
+    setOldImages([]);
 
     files.forEach((file) => {
       const reader = new FileReader();
@@ -95,16 +133,16 @@ const NewProduct = () => {
 
   return (
     <Fragment>
-      <MetaData title="Create Product" />
+      <MetaData title="Update Product" />
       <div className="dashboard">
         <SideBar />
         <div className="newProductContainer">
           <form
             className="createProductForm"
             encType="multipart/form-data"
-            onSubmit={createProductSubmitHandler}
+            onSubmit={updateProductSubmitHandler}
           >
-            <h1>Create Product</h1>
+            <h1>Update Product</h1>
 
             <div>
               <SpellcheckIcon />
@@ -123,6 +161,7 @@ const NewProduct = () => {
                 placeholder="Price"
                 required
                 onChange={(e) => setPrice(e.target.value)}
+                value={price}
               />
             </div>
 
@@ -140,7 +179,10 @@ const NewProduct = () => {
 
             <div>
               <AccountTreeIcon />
-              <select onChange={(e) => setCategory(e.target.value)}>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
                 <option value="">Choose Category</option>
                 {categories.map((cate) => (
                   <option key={cate} value={cate}>
@@ -157,6 +199,7 @@ const NewProduct = () => {
                 placeholder="Stock"
                 required
                 onChange={(e) => setStock(e.target.value)}
+                value={Stock}
               />
             </div>
 
@@ -165,9 +208,16 @@ const NewProduct = () => {
                 type="file"
                 name="avatar"
                 accept="image/*"
-                onChange={createProductImagesChange}
+                onChange={updateProductImagesChange}
                 multiple
               />
+            </div>
+
+            <div id="createProductFormImage">
+              {oldImages &&
+                oldImages.map((image, index) => (
+                  <img key={index} src={image.url} alt="Old Product Preview" />
+                ))}
             </div>
 
             <div id="createProductFormImage">
@@ -181,7 +231,7 @@ const NewProduct = () => {
               type="submit"
               disabled={loading ? true : false}
             >
-              Create
+              Update
             </Button>
           </form>
         </div>
@@ -190,4 +240,4 @@ const NewProduct = () => {
   );
 };
 
-export default NewProduct;
+export default UpdateProduct;

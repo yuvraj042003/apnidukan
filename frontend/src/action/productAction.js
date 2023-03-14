@@ -1,8 +1,5 @@
 import axios from 'axios';
-import { config } from 'dotenv';
-
 import {
-<<<<<<< HEAD
     ALL_PRODUCT_FAIL,
   ALL_PRODUCT_REQUEST,
   ALL_PRODUCT_SUCCESS,
@@ -31,19 +28,6 @@ import {
   DELETE_REVIEW_SUCCESS,
   DELETE_REVIEW_FAIL,
   CLEAR_ERRORS,
-=======
-ALL_PRODUCT_FAIL,
-ALL_PRODUCT_REQUEST,
-ALL_PRODUCT_SUCCESS,
-PRODUCT_DETAILS_REQUEST,
-PRODUCT_DETAILS_FAIL,
-PRODUCT_DETAILS_SUCCESS,
-NEW_REVIEW_REQUEST,
-NEW_REVIEW_SUCCESS,
-NEW_REVIEW_FAIL,
-
-CLEAR_ERRORS
->>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
 } from '../constant/productConstants';
 
 export const getProduct = (keyword="", currentPage=1, amount= [0,25000], category, ratings = 0)=> async(dispatch)=>{
@@ -66,11 +50,7 @@ export const getProduct = (keyword="", currentPage=1, amount= [0,25000], categor
         });
     }
 }
-<<<<<<< HEAD
 // Get Product Details
-=======
-// GET PRODUCT DETAILS 
->>>>>>> e02dc71f51c4fafd5e28ad88b468e0975ad8dcb4
 export const getProductDetails = (id)=> async(dispatch)=>{
     try {
        dispatch({type:PRODUCT_DETAILS_REQUEST});
@@ -88,28 +68,6 @@ export const getProductDetails = (id)=> async(dispatch)=>{
         });
     }
 }
-// NEW REVIEW
-export const newReview = (reviewData)=> async(dispatch)=>{
-    try {
-       dispatch({type:NEW_REVIEW_REQUEST});
-       const config = {
-        headers: {"Content-Type":"application/json"}
-    };
-        const {data} = await axios.put(`http://localhost:4000/api/v1/review`,reviewData, config);
-        
-        dispatch({
-            type:NEW_REVIEW_SUCCESS,
-            payload:data.success,
-        })
-    } catch (error) {
-        
-        dispatch({
-            type:NEW_REVIEW_FAIL,
-            payload:error.response.data.error,
-        });
-    }
-}
-
 
 // Get All Products For Admin
 export const getAdminProduct = () => async (dispatch) => {
