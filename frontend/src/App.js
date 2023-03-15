@@ -36,6 +36,10 @@ import ProductList from "././componant/Admin/ProductList.js"
 import NewProduct from "././componant/Admin/NewProduct.js"
 import UpdateProduct from "././componant/Admin/UpdateProduct.js"
 import Order from "././componant/Admin/OrderList.js"
+import ProcessOrder from "././componant/Admin/ProcessOrder.js"
+import UserList from "././componant/Admin/UserList.js"
+import UpdateUser from "./componant/Admin/UpdateUser";
+import ProductReviews from "./componant/Admin/ProductReviews.js";
 function App() {
   
   const { isauthenticatedUser, user } = useSelector((state) => state.user);
@@ -86,9 +90,12 @@ function App() {
             <Route isAdmin={true} extact path="/admin/dashboard" element={ <Dashboard/>} />
             <Route isAdmin={true} extact path="/admin/products" element={ <ProductList/>} />
             <Route isAdmin={true} extact path="/admin/new/product" element={ <NewProduct/>} />
-            <Route isAdmin={true} extact path="/admin/new/product/:id" element={ <UpdateProduct/>} />
-            <Route isAdmin={true} extact path="/admin/new/product/Orders" element={ <Order/>} />
-           
+            <Route isAdmin={true} extact path="/admin/product/:id" element={ <UpdateProduct/>} />
+            <Route isAdmin={true} extact path="/admin/Orders" element={ <Order/>} />
+            <Route isAdmin={true} extact path="/admin/Order/:id" element={ <ProcessOrder/>} />
+            <Route isAdmin={true} extact path="/admin/users" element={ <UserList/>} />
+            <Route isAdmin={true} extact path="/admin/user/:id" element={ <UpdateUser/>} />
+            <Route isAdmin={true} extact path="/admin/reviews" element={ <ProductReviews.js/>} />
             {/* <Route extact path="/product/:id" element={<ProductDetails/> } /> */}
         </Routes>
       <Footer />

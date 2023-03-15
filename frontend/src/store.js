@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {legacy_createStore as createStore} from 'redux';
 import { productsReducer, productDetailsReducer, newReviewReducer, newProductReducer, productReducer } from './reducers/productReducer';
-import { forgotPasswordReducer, profileReducer, userReducer } from './reducers/userReducer';
+import { allUsersReducer, forgotPasswordReducer, profileReducer, userDetailsReducer, userReducer } from './reducers/userReducer';
 import { cartReducer } from './reducers/cartReducer';
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderReducer } from './reducers/orderReducer';
 
@@ -21,6 +21,9 @@ newProduct:newProductReducer,
 product:productReducer,
 allOrders:allOrdersReducer,
 order:orderReducer,
+allUsers: allUsersReducer,
+userDetails: userDetailsReducer,
+
 
 });
 let initialStore = {cart: {

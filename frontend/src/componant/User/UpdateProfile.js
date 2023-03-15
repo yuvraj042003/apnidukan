@@ -87,7 +87,7 @@ const UpdateProfile = () => {
       type: UPDATE_PROFILE_RESET
     })
     }
-  }, [dispatch, error, alert, navigate, user, isUpdated ])
+  }, [dispatch, error, alert, navigate, isUpdated ])
   
 
   return (
