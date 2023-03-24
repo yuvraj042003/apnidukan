@@ -1,27 +1,37 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import MetaData from '../layout/metadata'
 import Loader from '../layout/Loader/Loader'
 import { useNavigate} from 'react-router-dom'
 import "./Profile.css";
+import UserOptions from '../layout/Headere/UserOptions'
 
 const Profile = () => {
-  const {user, loading, isAuthenticated} = useSelector((state)=>state.user);
+  const [user, setUser] = useState({}); 
+  const loading = false;
+  console.log("user",user);
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("userInfo")));
+
+  }, [])
   console.log(user)
   const navigate = useNavigate();
 console.log(user)
-  useEffect(() => {
-    if(isAuthenticated === false){
-      navigate("/login")
-    }
-  }, [isAuthenticated, navigate])
+  // useEffect(() => {
+  //   if(isAuthenticated === false){
+  //     navigate("/login")
+  //   }
+  // }, [isAuthenticated, navigate])
   
 
 
   return (
     <>
-        {loading ? <Loader />:<><MetaData title={`${user.name}s Profile`}/>
+        
+        {loading ? <Loader />:<>
+        <UserOptions/>
+        <MetaData title={`${user.name}s Profile`}/>
         <div className='profileContainer'>
           <div>
             <h1>My Profile</h1>

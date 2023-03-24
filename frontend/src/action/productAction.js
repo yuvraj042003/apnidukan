@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-    ALL_PRODUCT_FAIL,
+  ALL_PRODUCT_FAIL,
   ALL_PRODUCT_REQUEST,
   ALL_PRODUCT_SUCCESS,
   ADMIN_PRODUCT_REQUEST,

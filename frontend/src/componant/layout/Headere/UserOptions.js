@@ -12,6 +12,9 @@ import {useAlert} from 'react-alert';
 import {logout} from '../../../action/userAction'
 
 const UserOptions = ({user}) => {
+// 
+    
+    console.log("user",user);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const alert = useAlert();
@@ -21,9 +24,9 @@ const UserOptions = ({user}) => {
         {icon: <PersonIcon/>, name:"Profile", func: account},
         {icon: <ExitToAppIcon/>, name:"Logout", func: logoutuser},
     ]
-    if(user.role==='admin'){
+    if(user?.role==='admin'){
         options.unshift({icon: <DashboardIcon/>,
-         name:"Dashboard",
+        name:"Dashboard",
         func: dashboard})
     }
 
@@ -55,8 +58,8 @@ const UserOptions = ({user}) => {
         icon={
             <img className='SpeeedDialIcon'
             // 'user' is not defined ----> DUE TO REGISTRATION BUTTON ERROR -- FIXED
-            src={user.avatar.url ? user.avatar.url: "Profile.png" }
-
+            src={user?.avatar.url ? user?.avatar.url: "Profile.jpg" }
+            
             alt="Profile"
             /> 
         }
@@ -77,6 +80,7 @@ const UserOptions = ({user}) => {
         </SpeedDial>
     </>
   )
-}
+ }
+
 
 export default UserOptions;

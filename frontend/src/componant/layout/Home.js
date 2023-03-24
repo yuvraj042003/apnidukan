@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import "../layout/Headere/Home.css";
+import "../layout/Home.css";
 import MetaData from './metadata';
 import {getProduct} from '../../action/productAction';
 import {useDispatch, useSelector} from 'react-redux';

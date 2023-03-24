@@ -11,9 +11,11 @@ import Search from './componant/product/Search.js'
 import LoginSignUp from './componant/User/LoginSignUp.js';
 //import WebFont from "webfontloader";
 import Profile from './componant/User/Profile.js';
+import About from './componant/layout/About/About';
+import Contact from './componant/layout/About/Contact';
 import store from "./store";
 import { loadUser} from "./action/userAction";
-import UserOptions from "./componant/layout/Headere/UserOptions.js"
+import UserOptions from "./componant/layout/Headere/UserOptions";
 import { useSelector } from "react-redux";
 //import ProtectedRoute from "./componant/Route/ProtectedRoute";
 import UpdateProfile from "./componant/User/UpdateProfile.js";
@@ -68,12 +70,15 @@ function App() {
           </Elements>
           )}
             {isauthenticatedUser && <UserOptions user={ user } />}
+           
             <Route extact path="/" element={ <Home/> } />
             <Route extact path="/product/:id" element={ <ProductDetails/> } />
             <Route extact path="/products" element={ <Products/> } />
             <Route path="/products/:keyword" element={ <Products/> } />
             <Route extact path="/search" element={ <Search/> } />
             <Route extact path="/account" element={<Profile/>} />
+            <Route extact path="/about" element={<About/>} />
+            <Route extact path="/Contact" element={<Contact/>} />
             <Route extact path="/login" element={ <LoginSignUp/>} />
             <Route extact path="/profile/update" element={ <UpdateProfile/> } />
             <Route extact path="/password/update" element={ <UpdatePassword/> } />
@@ -95,7 +100,7 @@ function App() {
             <Route isAdmin={true} extact path="/admin/Order/:id" element={ <ProcessOrder/>} />
             <Route isAdmin={true} extact path="/admin/users" element={ <UserList/>} />
             <Route isAdmin={true} extact path="/admin/user/:id" element={ <UpdateUser/>} />
-            <Route isAdmin={true} extact path="/admin/reviews" element={ <ProductReviews.js/>} />
+            <Route isAdmin={true} extact path="/admin/reviews" element={ <ProductReviews/>} />
             {/* <Route extact path="/product/:id" element={<ProductDetails/> } /> */}
         </Routes>
       <Footer />

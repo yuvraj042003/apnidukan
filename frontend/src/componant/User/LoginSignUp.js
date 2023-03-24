@@ -127,7 +127,7 @@ const LoginSignUp = () => {
   };
   return (
     <>
-      { loading ? <Loader/> : <div className="LoginSignUpContainer">
+     <div className="LoginSignUpContainer">
         <div className="LoginSignUpBox">
           <div>
             <div className="login_signUp_toggle">
@@ -221,7 +221,7 @@ const LoginSignUp = () => {
 
         </div>
       </div>
-      }
+  
     </>
   );
 };

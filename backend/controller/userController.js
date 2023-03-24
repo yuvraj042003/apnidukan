@@ -20,7 +20,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
 
   sendToken(user, 201, res);
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   } 
   
 });
@@ -30,7 +30,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
 exports.loginUser = catchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
   // Checking if user and password both enterd by user
-
+  console.log("Data", email, password);
   if (!email || !password) {
     return next(new ErrorHandler("Please Enter User Email  and Password", 400));
   }
